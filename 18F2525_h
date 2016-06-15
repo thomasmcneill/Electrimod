@@ -1,0 +1,92 @@
+/*! \file 18F2525_h
+    \brief PIC 18F2525 includes and configuration
+
+	
+*/
+
+// Standard Includes
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+#include <ctype.h>
+
+// Hardware Includes
+#include <pwm.h>
+#include <timers.h>
+#include <adc.h>
+#include <delays.h>
+#include <reset.h>
+
+
+// Include for the PIC
+#include <p18F2525.h>
+
+#ifndef __18F2525_H
+#define __18F2525_H 
+
+
+#define CLOCK_HZ 			32000000  	/// This is here for proper timing calculation.
+#define TIMER0_PRESCALER    4		  	/// Timer 0 prescaler
+#define EEPROM_SIZE			1024		/// Size of EEPROM in bytes
+#define FARROM const far rom char		/// This is used often to store text in ROM (FLASH)
+
+
+////////////////////////////////////////////////
+// PIN Definitions
+////////////////////////////////////////////////
+#define PIN1				PORTBbits.RB0
+#define PIN2				PORTBbits.RB1
+#define PIN3				PORTBbits.RB2
+#define PIN4				PORTBbits.RB3
+#define PIN5				PORTBbits.RB4
+#define PIN6				PORTBbits.RB5
+#define PIN7				PORTBbits.RB6
+#define Status_LED			PORTCbits.RC5
+
+
+
+
+/////////////////////////////////////////////////////////
+// ADCON0 Control Register (Page 225)
+/////////////////////////////////////////////////////////
+#define AN0										1
+#define AN1 									5
+#define AN2					    				9
+#define AN3										13
+#define AN4										17
+
+
+
+///////////////////////////////////////////////////
+/// Structure for holding status information
+////////////////////////////////////////////////
+typedef struct  {
+	unsigned	  	PORT7:1;
+	unsigned	  	PORT6:1;
+	unsigned	  	PORT5:1;
+	unsigned	  	PORT4:1;
+	unsigned	  	PORT3:1;
+	unsigned	  	PORT2:1;
+	unsigned	  	PORT1:1;
+	unsigned	  	PORT0:1;
+	unsigned		TimeOut:1;				/// if the timer elapses we have a problem and this is set. 
+	unsigned int  	Sequence;				/// Block number.  Number of iterations 
+	unsigned int 		  	Loop_Latency;			/// This tracks how far off we are on the timing 
+	unsigned long			Loop_Cycles;			/// Configured when calling Configure_Loop.  Ticks per loop 
+} _STATUS;
+
+extern _STATUS Status;						/// Global status variable
+
+extern char szText[64];						/// Variable used for creating strings for display.  Placed here due to memory limitations
+
+//////////////////////////////////////////
+/// Structure for abort codes
+//////////////////////////////////////////
+typedef struct  {
+	unsigned	  User:1;
+	unsigned      Example:1;
+} _ABORT;
+
+
+#endif

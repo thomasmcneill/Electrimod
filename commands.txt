@@ -1,0 +1,12 @@
+I   = Ignition
+o/O = Oxidizer Valve
+f/F = Fuel Valve
+A/a = Abort
+m/M = Match
+0   = Zero All Values includes resetting aborts
+1   = Disable Chamber Pressure Low
+2   = Disable Chamber Pressure High
+3   = Disable Fuel Pressure Low
+4   = Disable Oxidizer Pressure Low
+5   = Disable Fuel/Chamber Pressure dP Low
+V/v = View Aborts
