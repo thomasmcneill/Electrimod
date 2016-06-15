@@ -27,4 +27,12 @@ This was intended for a modular stackable set of boards similar to arduino but a
 
 *Servo Libary
 
+*I2C Library
+
 *Timers library
+
+------------------------
+
+main.c (PICF2525)
+
+This is an example program that was for running an a lawnmower using propane with electronic ignition using an electronic spark plug and controlled injector.  Awesome right?  The application shows how to use Timer Queues, Servos, Pin interrupts, Storing configuration in EEPROM, ANSI display with colors and other cool stuff, reading input from serial port.
